@@ -37,11 +37,11 @@ const VideoEditor = () => {
     // 비디오 파일이 설정된 경우 슬라이더 값을 기반으로 비디오를 시크
     if (videoFile) {
       const min = sliderValues[0];
-      console.log("Slider min value:", min);
+     // console.log("Slider min value:", min);
 
       if (min !== undefined && videoPlayerState && videoPlayer && isFinite(min)) {
         const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
-        console.log("Seeking to minTime:", minTime);
+        // console.log("Seeking to minTime:", minTime);
         if (isFinite(minTime)) {
           videoPlayer.seekTo(minTime, 'seconds');
         }
@@ -57,7 +57,7 @@ const VideoEditor = () => {
       const minTime = sliderValueToVideoTime(videoPlayerState.duration, min);
       const maxTime = sliderValueToVideoTime(videoPlayerState.duration, max);
 
-      console.log("Min time:", minTime, "Max time:", maxTime);
+      // console.log("Min time:", minTime, "Max time:", maxTime);
 
       if (isFinite(minTime) && isFinite(maxTime)) {
         if (videoPlayerState.playedSeconds < minTime) {

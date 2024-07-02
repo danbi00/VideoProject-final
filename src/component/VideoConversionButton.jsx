@@ -33,7 +33,9 @@ const VideoConversionButton = ({
         `${max}`,
         "-f",
         "gif",
-        outputFileName
+        outputFileName,
+        "-loglevel",
+        "error" // 오류 메시지만 출력
       );
 
       const data = ffmpeg.FS("readFile", outputFileName);
@@ -71,7 +73,9 @@ const VideoConversionButton = ({
         `${max - min}`,
         "-c",
         "copy",
-        outputFileName
+        outputFileName,
+        "-loglevel",
+        "error" // 오류 메시지만 출력
       );
 
       const data = ffmpeg.FS("readFile", outputFileName);

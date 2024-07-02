@@ -28,7 +28,7 @@ export function VideoPlayer({ src, onPlayerChange = () => {}, onChange = () => {
 
   const handleProgress = (state) => {
     // 비디오의 진행 상태를 업데이트하고 로깅
-    console.log("Progress state:", state);
+    //console.log("Progress state:", state);//   
     if (onChange) {
       onChange(state);
     }
@@ -36,7 +36,7 @@ export function VideoPlayer({ src, onPlayerChange = () => {}, onChange = () => {
 
   const handleDuration = (duration) => {
     // 비디오의 전체 길이를 업데이트하고 로깅
-    console.log("Video duration:", duration);
+    //console.log("Video duration:", duration);//
     onChange((prevState) => ({ ...prevState, duration }));
   };
 
