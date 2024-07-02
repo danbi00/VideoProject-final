@@ -1,0 +1,38 @@
+.video-conversion-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+  }
+  
+  @media all and (max-width: 600px) {
+    .video-conversion-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  .video-conversion-button {
+    width: 40%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px 20px 0;
+  }
+  
+  @media all and (max-width: 600px) {
+    .video-conversion-button {
+      width: 100%;
+    }
+  }
+  
+  .video-conversion-img {
+    margin-right: 10px;
+  }
+  
+  .video-conversion-text {
+    color: #383838; 
+    font-size: 16px; 
+    font-weight: 700;
+  }
+  

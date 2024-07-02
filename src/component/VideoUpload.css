@@ -1,0 +1,19 @@
+.st-video-area {
+  width: 100%;
+  height: 300px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.st-video-img {
+  cursor: pointer;
+}
+
+.st-video-btn {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
