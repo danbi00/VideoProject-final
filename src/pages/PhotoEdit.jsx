@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import { BiImage } from "react-icons/bi"; 
 
@@ -6,8 +6,8 @@ const PhotoEdit = () => {
   const [image, setImage] = useState(null);
   const [brightness, setBrightness] = useState(100);
   const [width, setWidth] = useState(300);
+  const canvasRef = useRef(null);
 
-  // 이미지 업로드 핸들러
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -21,26 +21,36 @@ const PhotoEdit = () => {
     }
   };
 
-  // 밝기 조절 핸들러
   const handleBrightnessChange = (e) => {
     const value = parseInt(e.target.value);
     setBrightness(value);
   };
 
-  // 크기 조절 핸들러
   const handleWidthChange = (e) => {
     const value = parseInt(e.target.value);
     setWidth(value);
   };
 
-  // 이미지 저장 핸들러
   const handleSaveImage = () => {
-    const downloadLink = document.createElement("a");
-    downloadLink.href = image;
-    downloadLink.download = "edited_image.png"; 
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    const img = new Image();
+    img.src = image;
+
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.filter = `brightness(${brightness}%)`;
+      ctx.drawImage(img, 0, 0, width, (img.height * width) / img.width);
+      
+      const editedImage = canvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = editedImage;
+      downloadLink.download = "edited_image.png"; 
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    };
   };
 
   return (
@@ -54,6 +64,7 @@ const PhotoEdit = () => {
       {image && (
         <ImageContainer>
           <StyledImage src={image} style={{ width: `${width}px`, filter: `brightness(${brightness}%)` }} />
+          <canvas ref={canvasRef} style={{ display: "none" }} />
         </ImageContainer>
       )}
 
